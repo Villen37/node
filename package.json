@@ -1,0 +1,32 @@
+{
+  "name": "i71-f2e",
+  "version": "1.0.0",
+  "description": "f2e.it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IQSK/f2e.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IQSK/f2e/issues"
+  },
+  "homepage": "https://github.com/IQSK/f2e#readme",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "axios": "^0.21.1",
+    "koa": "^2.13.1",
+    "koa-art-template": "^1.1.1",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.0.0",
+    "koa-session": "^6.1.0",
+    "koa-static": "^5.0.0",
+    "mongodb": "^3.6.5",
+    "phantom": "^6.3.0",
+    "silly-datetime": "^0.1.2"
+  }
+}

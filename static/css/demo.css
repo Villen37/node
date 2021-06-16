@@ -1,0 +1,11 @@
+div{
+    font-size: .4rem;
+    color: red;
+}
+table{
+    font-size: .25rem;
+    line-height: .44rem;
+}
+table td{
+    min-width: 2rem;
+}

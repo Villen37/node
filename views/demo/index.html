@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="dns-prefetch" href="">
+    <link rel="dns-prefetch" href="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/demo.css">
+    <title></title>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                isIOS = navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1,
+                dpr = window.top === window.self ? dpr : 1, //被iframe引用时，禁止缩放
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+            docEl.dataset.dpr = dpr;
+            var recalc = function () {
+                var width = docEl.clientWidth;
+                if (width / dpr > 750) {
+                    width = 750 * dpr;
+                }
+                docEl.dataset.width = width
+                docEl.dataset.percent = 100 * (width / 750);
+                docEl.style.fontSize = 100 * (width / 750) + 'px';
+            };
+            recalc()
+            isIOS && doc.documentElement.classList.add('iosx' + win.devicePixelRatio)
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+        })(document, window);
+    </script>
+</head>
+
+<body>
+<div id="app">{{edit}}
+    <form action="{{edit ? 'demoEdit':'demoAdd'}}" method="post">
+        <input type="text" name="name" value="{{edit && edit.name || ''}}"><br>
+        <input type="text" name="sex" value="{{edit && edit.sex||''}}"><br>
+        <input type="hidden" name="_id" value="{{@(edit && edit._id||'')}}"><br>
+        <button type="submit">提交</button>
+    </form>
+    {{listData.name}}<br>
+    {{@listData.desc}}<br>
+    {{each  listData.list}}
+        {{$value}}<br>
+    {{/each}}
+
+    <a href="/demo">新增</a>
+
+    <table cellpadding="0" border="1" cellspacing="0">
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>操作</td>
+        </tr>
+        {{each users}}
+            <tr>
+                <td>{{$value.name}}</td>
+                <td>{{$value.sex}}</td>
+                <td>
+                    <a href="demo?id={{@ $value._id}}">编辑</a>
+                    <a href="demoRemove?id={{@ $value._id}}">删除</a>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
+
+<!-- bundle -->
+{{ include '../public/footer.html' }}
+</body>
+
+</html>

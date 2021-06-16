@@ -1,0 +1,5 @@
+node_modules/*
+appAll.js
+.idea/*
+produce_img/*
+logs/
